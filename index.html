@@ -20,14 +20,28 @@
     greenCount++;
     console.log('Green Count: '+ greenCount);
     ctx.clearRect(150,0,150,100);
-    ctx.fillText(greenCount, 205, 65);
+    if(greenCount <= 9){
+      ctx.fillText('0'+greenCount, 205, 65);
+    }
+    else{
+      ctx.fillText(greenCount, 205, 65);
+    }
   }
   else if(counter == -59){
     counter = 0;
     redCount++;
     console.log('Red Count: '+ redCount);
     ctx.clearRect(0,0,150,100);
+    if(redCount <= 9){
+    ctx.fillText('0'+redCount, 75, 65);
+  }
+  else{
     ctx.fillText(redCount, 75, 65);
+  }
+  }
+  if(redCount == 0 && greenCount == 0){
+    ctx.fillText('0'+greenCount, 205, 65);
+    ctx.fillText('0'+redCount, 75, 65);
   }
   }
   function clock(){
