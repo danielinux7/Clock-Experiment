@@ -8,7 +8,7 @@
   <canvas id="clockCounter" height="100" width="300" style="border-radius:5px;border:1px solid black;position:absolute;left:38%;top:50%"></canvas>
   <canvas id="canvas" height="600" width="600" style="position:absolute;left:28%;top:15%"></canvas>
   <script language="javascript">
-  var sec = -12;
+  var totalSteps = 0;
   var counter = 0;
   var greenCount = 0;
   var redCount = 0;
@@ -58,18 +58,16 @@
   redGradient.addColorStop(0,"#FFFFFF");
   redGradient.addColorStop(1,"#D40000");
   if(Math.round(Math.random())){
-    sec++;
     counter++;
     ctx.fillStyle = greenGradient;
     ctx.strokeStyle = "#00D400"
   }
   else{
-    sec--;
     counter--;
     ctx.fillStyle = redGradient;
     ctx.strokeStyle = "#D40000";
   }
-  ctx.rotate(sec * Math.PI/30);
+  ctx.rotate((counter-16) * Math.PI/30);
   ctx.beginPath();
   ctx.arc(220,0,10,0,Math.PI*2,true);
   ctx.fill();
@@ -87,7 +85,9 @@
   ctx.restore();
 
   updateCount();
-  window.setTimeout(clock, 1000);
+  totalSteps++;
+  console.log('counts : '+counter +' and total :' + totalSteps);
+  window.setTimeout(clock, 400);
 }
 
 clock();
