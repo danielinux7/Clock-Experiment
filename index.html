@@ -8,6 +8,9 @@
   <canvas id="canvas" height="600" width="600" style="position:absolute;left:28%;top:15%"></canvas>
   <script language="javascript">
   var sec = -12;
+  var counter = 0;
+  var greenCount = 0;
+  var redCount = 0;
     function clock(){
   var now = new Date();
   var ctx = document.getElementById('canvas').getContext('2d');
@@ -37,11 +40,13 @@
   redGradient.addColorStop(1,"#D40000");
   if(Math.round(Math.random())){
     sec++;
+    counter++;
     ctx.fillStyle = greenGradient;
     ctx.strokeStyle = "#00D400"
   }
   else{
     sec--;
+    counter--;
     ctx.fillStyle = redGradient;
     ctx.strokeStyle = "#D40000";
   }
@@ -62,6 +67,17 @@
   ctx.stroke();
   ctx.restore();
 
+  if(counter == 59){
+    counter = 0;
+    greenCount++;
+    console.log('Green Count: '+ greenCount)
+  }
+  else if(counter == -59){
+    counter = 0;
+    redCount++;
+    console.log('Red Count: '+ redCount)
+
+  }
   window.setTimeout(clock, 1000);
 }
 
