@@ -29,18 +29,27 @@
 
   // Write seconds
   ctx.save();
+  var greenGradient = ctx.createRadialGradient(220,0,14,220,0,0);
+  greenGradient.addColorStop(0,"#FFFFFF");
+  greenGradient.addColorStop(1,"#00D400");
+  var redGradient = ctx.createRadialGradient(220,0,14,220,0,0);
+  redGradient.addColorStop(0,"#FFFFFF");
+  redGradient.addColorStop(1,"#D40000");
   if(Math.round(Math.random())){
     sec++;
-    ctx.fillStyle = "#00D400";
+    ctx.fillStyle = greenGradient;
+    ctx.strokeStyle = "#00D400"
   }
   else{
     sec--;
-    ctx.fillStyle = "#D40000";
+    ctx.fillStyle = redGradient;
+    ctx.strokeStyle = "#D40000";
   }
   ctx.rotate(sec * Math.PI/30);
   ctx.beginPath();
   ctx.arc(220,0,10,0,Math.PI*2,true);
   ctx.fill();
+  ctx.stroke();
   ctx.fillStyle = "rgba(0,0,0,0)";
   ctx.arc(0,0,3,0,Math.PI*2,true);
   ctx.fill();
