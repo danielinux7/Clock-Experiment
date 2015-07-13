@@ -5,13 +5,32 @@
     <title>The clock experiment</title>
   </head>
   <body>
+  <canvas id="clockCounter" height="100" width="300" style="border-radius:5px;border:1px solid black;position:absolute;left:38%;top:50%"></canvas>
   <canvas id="canvas" height="600" width="600" style="position:absolute;left:28%;top:15%"></canvas>
   <script language="javascript">
   var sec = -12;
   var counter = 0;
   var greenCount = 0;
   var redCount = 0;
-    function clock(){
+  function updateCount(){
+    var ctx = document.getElementById('clockCounter').getContext('2d');
+    ctx.font = "48px serif";
+  if(counter == 59){
+    counter = 0;
+    greenCount++;
+    console.log('Green Count: '+ greenCount);
+    ctx.clearRect(150,0,150,100);
+    ctx.fillText(greenCount, 205, 65);
+  }
+  else if(counter == -59){
+    counter = 0;
+    redCount++;
+    console.log('Red Count: '+ redCount);
+    ctx.clearRect(0,0,150,100);
+    ctx.fillText(redCount, 75, 65);
+  }
+  }
+  function clock(){
   var now = new Date();
   var ctx = document.getElementById('canvas').getContext('2d');
   ctx.save();
@@ -67,17 +86,7 @@
   ctx.stroke();
   ctx.restore();
 
-  if(counter == 59){
-    counter = 0;
-    greenCount++;
-    console.log('Green Count: '+ greenCount)
-  }
-  else if(counter == -59){
-    counter = 0;
-    redCount++;
-    console.log('Red Count: '+ redCount)
-
-  }
+  updateCount();
   window.setTimeout(clock, 1000);
 }
 
