@@ -1,0 +1,191 @@
+
+<style type="text/css">
+*, *.*{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+@keyframes slidein {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 100%;
+  }
+}
+@keyframes slideout {
+  from {
+    max-height: 100%;
+  }
+
+  to {
+    max-height: 0;
+  }
+}
+
+.slidein{
+  animation-duration: 3s;
+  animation-name: slidein;
+  padding:0.5em;
+}
+.slideout{
+  animation-duration: 3s;
+  animation-name: slideout;
+  /*height:0;*/
+  /*padding:0;*/
+}
+  .card{
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 10px 5px 5px black;
+  width:25%;
+  margin: 0.5em;
+  padding: 0.5em;
+  height:auto;
+  position:relative;
+  }
+  .tray{
+  background: gray;
+  margin-top: 0.5em;
+  overflow: hidden;
+  display:none;
+  }
+  .expand{
+  position: absolute;
+  top:100%;
+  left:0;
+  width:auto;
+  z-index: 1;
+  }
+  h2{
+    display:inline-block;
+    padding-left: 0.5em;
+  }
+  h2 + span{
+    float:right;
+    text-decoration: underline;
+    color:blue;
+    cursor:hand;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right:0.5em;
+  }
+  .cardHeader{
+    position:relative;
+  }
+  .cardHeader:after{
+    content:"";
+    display:block;
+    clear:both;
+    border-bottom: 1px solid black;
+    margin-bottom: 0.5em;
+  }
+  .cardContainer{
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  }
+  @media (max-width: 900px) {
+  .card {
+    width:auto;
+  }
+  .cardContainer{
+    flex-direction: column;
+    -webkit-flex-direction: column;
+  }
+}
+</style>
+<!DOCTYPE html>
+<html>
+  <body>
+  <script type="text/javascript">
+  function trayToggle(){
+    var card = this.parentNode.parentNode;
+    var tray = card.querySelector('.tray');
+    var container = card.parentNode;
+    if(tray.classList.contains('slidein')){
+      tray.classList.add('slideout');
+      tray.classList.remove('slidein');
+      tray.style.display = 'none';
+
+    }
+    else{
+      tray.classList.add('slidein');
+      tray.classList.remove('slideout');
+      tray.style.display = 'block';
+    }
+  }
+  </script>
+  <div class="cardContainer">
+    <div class="card">
+    <div class="cardHeader">
+    <h2>The title</h2>
+    <span> view details</span>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      <div class="tray expand">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      </div>
+    </div>
+    <div class="card">
+    <div class="cardHeader">
+    <h2>The title</h2>
+    <span> view details</span>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      <div class="tray">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      </div>
+    </div>
+    <div class="card">
+    <div class="cardHeader">
+    <h2>The title</h2>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+    </div>
+    <div class="card">
+    <div class="cardHeader">
+    <h2>The title</h2>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+    </div>
+      <div class="card">
+    <div class="cardHeader">
+    <h2>The title</h2>
+    <span> view details</span>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      <div class="tray">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      </div>
+    </div>
+      <div class="card">
+    <div class="cardHeader">
+    <h2>The title</h2>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+    </div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+    (function(){
+  var cardHeaders = document.getElementsByClassName('cardHeader');
+  var detailElement;
+  console.log('cardHeaders');
+  for(var i = 0; i < cardHeaders.length; i++){
+    if(cardHeaders[i].children.length >1){
+    detailElement = cardHeaders[i].children[cardHeaders[i].children.length-1];
+    console.log(detailElement);
+    detailElement.addEventListener('click',trayToggle);
+  }
+  }
+})();
+</script>
