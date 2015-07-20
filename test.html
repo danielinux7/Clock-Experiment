@@ -1,6 +1,6 @@
 
 <style type="text/css">
-*, *.*{
+.cardContainer ,.cardContainer > *, .cardContainer > *.*{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -24,12 +24,12 @@
   }
 }
 
-.slidein{
+.card > .slidein{
   animation-duration: 3s;
   animation-name: slidein;
   padding:0.5em;
 }
-.slideout{
+.card > .slideout{
   animation-duration: 3s;
   animation-name: slideout;
   /*height:0;*/
@@ -45,24 +45,25 @@
   height:auto;
   position:relative;
   }
-  .tray{
+  .card > .tray{
   background: gray;
   margin-top: 0.5em;
   overflow: hidden;
   display:none;
   }
-  .expand{
+  .card > .expand{
   position: absolute;
   top:100%;
   left:0;
   width:auto;
   z-index: 1;
   }
-  h2{
+  .cardHeader > h2{
     display:inline-block;
     padding-left: 0.5em;
+    max-width:70%;
   }
-  h2 + span{
+  .cardHeader > h2 + span{
     float:right;
     text-decoration: underline;
     color:blue;
@@ -123,7 +124,7 @@
   <div class="cardContainer">
     <div class="card">
     <div class="cardHeader">
-    <h2>The title</h2>
+    <h2>The title lorem ipsum dolor sit amet, consect adipisi elit</h2>
     <span> view details</span>
     </div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
