@@ -1,5 +1,5 @@
 <style type="text/css">
-  @keyframes slidein {
+  @keyframes slideout {
   from {
     max-height: 0;
   }
@@ -7,22 +7,22 @@
     max-height: 100%;
   }
 }
-@keyframes slideout {
+@keyframes slidein {
   from {
     max-height: 100%;
   }
   to {
     max-height: 0;
   }
-}
-.card > .slidein{
-  animation-duration: 3s;
-  animation-name: slidein;
-  padding:0.5em;
 }
 .card > .slideout{
   animation-duration: 3s;
   animation-name: slideout;
+  padding:0.5em;
+}
+.card > .slidein{
+  animation-duration: 3s;
+  animation-name: slidein;
   /*height:0;*/
   /*padding:0;*/
 }
@@ -38,9 +38,11 @@
    box-shadow: 0 6px 10px 0 #cccccc;
   margin: 0.5em;
   padding: 0.5em;
+  width: 25%;
   height:auto;
   position:relative;
-  width:25%;
+  display: inline-block;
+  vertical-align: top;
   }
   .card > .tray{
   background-color: #f2f2f2;
@@ -52,20 +54,25 @@
   margin-top: 0.5em;
   overflow: hidden;
   display:none;
-  }
-  .card > .expand{
   position: absolute;
   top:100%;
   left:0;
   width:auto;
   z-index: 1;
   }
+  .hide-show{
+  font-family: 'Gotham SSm A', 'Gotham SSm B', Gotham, sans-serif;
+  font-style: normal;
+  margin-top: 0.5em;
+  overflow: hidden;
+  display:none;
+  }
   .card-header > h2{
     display:inline-block;
     padding-left: 0.5em;
     max-width:70%;
   }
-  .card-header > h2 + span{
+  .card-header > .details-link{
     float:right;
     text-decoration: underline;
     color:blue;
@@ -99,7 +106,8 @@
     border-radius: 0;
     -ms-border-radius: 0;
     box-shadow: none;
-    margin:0
+    margin:0;
+    display: block;
   }
   .card-container{
     flex-direction: column;
@@ -109,22 +117,21 @@
 </style>
 <!DOCTYPE html>
 <html>
-  <body>  
+<body>  
+
   <div class="card-container">
     <div class="card col-xs-6">
     <div class="card-header">
     <h2>The title lorem ipsum dolo sit amet, consect adipisi elit</h2>
-    <span> View Details</span>
     </div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
-      <div class="tray expand">
+      <div class="tray">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
       </div>
     </div>
     <div class="card col-xs-4">
     <div class="card-header">
     <h2>The title</h2>
-    <span> View Details</span>
     </div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
@@ -141,7 +148,6 @@
       <div class="card col-xs-4">
     <div class="card-header">
     <h2>The title</h2>
-    <span> View Details</span>
     </div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
@@ -150,38 +156,116 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
       </div>
     </div>
+     <div class="card col-xs-4">
+    <div class="card-header">
+    <h2>The title</h2>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      <div class="hide-show">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta distinctio aliquid accusantium esse, eaque a ullam harum, aut voluptates quis animi molestiae ad minus perspiciatis fugiat itaque, molestias facere iusto!
+      </div>
+    </div>
     </div>
 
-  </body>
+</body>
 </html>
 <script type="text/javascript">
-function trayToggle(){
-    var card = this.parentNode.parentNode;
-    var tray = card.querySelector('.tray');
-    console.log(tray);
-    var container = card.parentNode;
-    if(tray.classList.contains('slidein')){
-      tray.classList.add('slideout');
-      tray.classList.remove('slidein');
-      tray.style.display = 'none';
+window.onload = function(){
+  var cards = document.querySelectorAll('.card');
+  var tray, hideShow, link;
+  for(var i = 0; i < cards.length; i++){
+    tray = cards[i].querySelector('.tray');
+    hideShow = cards[i].querySelector('.hide-show');
+    if(tray !== null && tray !== undefined){
+      link = document.createElement('span');
+      link.setAttribute('class','details-link');
+      link.innerHTML = "View Details";
+      cards[i].querySelector('.card-header').appendChild(link);
+      cards[i].querySelector('.details-link').addEventListener('click',function (){
+        tray = this.parentNode.parentNode.querySelector('.tray');
+    // Support for IE9
+    if(tray.classList === undefined){
+      tray.classList = { 
+        contains :  function (className){
+          if(tray.className.match(className)){
+            return true;
+          }
+          else{
+            return false;
+          }
+
+        },
+        add : function(className){
+          if(!this.contains(className)){
+            tray.setAttribute('class', 'tray ' +className);
+          }
+        },
+        remove : function(className){
+          if(this.contains(className)){
+            tray.setAttribute('class', 'tray');
+          }
+        }
+      }
     }
-    else{
+    /////////////////
+    if(tray.classList.contains('slideout')){
       tray.classList.add('slidein');
       tray.classList.remove('slideout');
-      tray.style.display = 'block';
+      tray.style.display = 'none';
+      this.innerHTML = "View Details"
     }
-  }
+    else{
+      tray.classList.add('slideout');
+      tray.classList.remove('slidein');
+      tray.style.display = 'block';
+      this.innerHTML = "Hide Details"
+    }
+  });
+}
+else if(hideShow !== null && hideShow !== undefined){
+      link = document.createElement('span');
+      link.setAttribute('class','details-link');
+      link.innerHTML = "More Info";
+      cards[i].querySelector('.card-header').appendChild(link);
+      cards[i].querySelector('.details-link').addEventListener('click',function (){
+        hideShow = this.parentNode.parentNode.querySelector('.hide-show');
+    // Support for IE9
+    if(hideShow.classList === undefined){
+      hideShow.classList = { 
+        contains :  function (className){
+          if(hideShow.className.match(className)){
+            return true;
+          }
+          else{
+            return false;
+          }
 
-window.onload = function(){
-  var cardHeaders = document.getElementsByClassName('card-header');
-  var detailElement;
-  console.log(document);
-  for(var i = 0; i < cardHeaders.length; i++){
-    if(cardHeaders[i].children.length >1){
-    detailElement = cardHeaders[i].children[cardHeaders[i].children.length-1];
-    console.log(detailElement);
-    detailElement.addEventListener('click',trayToggle);
-  }
-  }
+        },
+        add : function(className){
+          if(!this.contains(className)){
+            hideShow.setAttribute('class', 'hide-show ' +className);
+          }
+        },
+        remove : function(className){
+          if(this.contains(className)){
+            hideShow.setAttribute('class', 'hide-show');
+          }
+        }
+      }
+    }
+    /////////////////
+    if(hideShow.style.display == 'block'){
+      hideShow.style.display = 'none';
+      this.innerHTML = "More Info"
+    }
+    else{
+      hideShow.style.display = 'block';
+      this.innerHTML = "Less Info"
+    }
+  });
+}
+}
 };
 </script>
