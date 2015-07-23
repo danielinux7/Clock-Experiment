@@ -1,0 +1,23 @@
+<style type="text/css">
+  /*The width and height of the div should be less than the img's to enforce border radius.*/
+  /*Use relative on the div element, absolute on the img to position the img left anf top side on relation to the div(it's parent.)*/
+  div{
+    border-radius: 15px;
+    overflow: hidden;
+    width: 12%;
+    height: 35%;
+    position: relative;
+  }
+  img{
+    position:absolute;
+    left: -50%;
+    top: -50%;
+  }
+</style>
+<html>
+<body>
+<div>
+    <img src="http://www.kirupa.com/html5/images/circle_colorful.png">
+  </div>
+</body>
+</html>
