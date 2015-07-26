@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.parent{
+						-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			position:relative;
+			width: 50%;
+		}
+		.parent.big{
+						-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			position:relative;
+			width: 100%;
+		}
+		.child{
+			border-radius: 5px;
+box-shadow: 0px 6px 10px 0px #CCC;
+						-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			/*position: absolute;*/
+			margin:0.5em;
+			/*margin-top: 0;*/
+			/*margin-bottom: 0;*/
+			top:0.5em;
+			bottom:0.5em;
+			padding:0.5em;
+			border-radius: 5px;
+			background: rgba(0,0,0,0.4);
+		}
+		div{
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		.container{
+			display:flex;
+			flex-flow: row wrap;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+				<div class="parent big">
+				<div class="child">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum non maxime reiciendis earum ea. Error repudiandae tempore aspernatur. Doloremque optio pariatur perspiciatis accusamus eum suscipit velit sapiente voluptas quam voluptates?
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt cumque doloremque quod facere cum rem possimus. Fuga qui quos dolore. Facere repellat error numquam quam accusamus corporis doloremque cupiditate in.</div>
+				</div>
+		<div class="parent">
+			<div class="child">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum non maxime reiciendis earum ea. Error repudiandae tempore aspernatur. Doloremque optio pariatur perspiciatis accusamus eum suscipit velit sapiente voluptas quam voluptates?
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt cumque doloremque quod facere cum rem possimus. Fuga qui quos dolore. Facere repellat error numquam quam accusamus corporis doloremque cupiditate in.</div>
+			</div>
+		<div class="parent">
+			<div class="child">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum non maxime reiciendis earum ea. Error repudiandae tempore aspernatur. Doloremque optio pariatur perspiciatis accusamus eum suscipit velit sapiente voluptas quam voluptates?</div>
+		</div>
+				<div class="parent">
+			<div class="child">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum non maxime reiciendis earum ea. Error repudiandae tempore aspernatur. Doloremque optio pariatur perspiciatis accusamus eum suscipit velit sapiente voluptas quam voluptates?
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt cumque doloremque quod facere cum rem possimus. Fuga qui quos dolore. Facere repellat error numquam quam accusamus corporis doloremque cupiditate in.</div>
+			</div>
+		<div class="parent">
+			<div class="child">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum non maxime reiciendis earum ea. Error repudiandae tempore aspernatur. Doloremque optio pariatur perspiciatis accusamus eum suscipit velit sapiente voluptas quam voluptates?</div>
+		</div>
+			<div class="parent big">
+				<div class="child">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum non maxime reiciendis earum ea. Error repudiandae tempore aspernatur. Doloremque optio pariatur perspiciatis accusamus eum suscipit velit sapiente voluptas quam voluptates?
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt cumque doloremque quod facere cum rem possimus. Fuga qui quos dolore. Facere repellat error numquam quam accusamus corporis doloremque cupiditate in.</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				(function(){
+					var cards = document.querySelectorAll('.child');
+					var parent,height,child;
+					window.setTimeout(function(){
+						for(var i = 0; i < cards.length; i++){
+							child = cards[i];
+							parent = child.parentNode;
+							height = parseInt(window.getComputedStyle(parent)['height']) - 2*parseInt(window.getComputedStyle(child)['margin'])
+							child.style.height = height + 'px';
+							console.log(window.getComputedStyle(parent)['height']);
+						}
+					},0,child);
+				})();
+			</script>
+		</body>
+		</html>
