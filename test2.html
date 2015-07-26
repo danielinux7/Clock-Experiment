@@ -7,6 +7,8 @@
 			box-sizing: border-box;
 			position:relative;
 			width: 50%;
+			display:flex;
+			flex-flow: row ;
 		}
 		.parent.big{
 						-moz-box-sizing: border-box;
@@ -65,19 +67,30 @@ box-shadow: 0px 6px 10px 0px #CCC;
 				</div>
 			</div>
 			<script type="text/javascript">
-				(function(){
-					var cards = document.querySelectorAll('.child');
-					var parent,height,child;
-					window.setTimeout(function(){
-						for(var i = 0; i < cards.length; i++){
-							child = cards[i];
-							parent = child.parentNode;
-							height = parseInt(window.getComputedStyle(parent)['height']) - 2*parseInt(window.getComputedStyle(child)['margin'])
-							child.style.height = height + 'px';
-							console.log(window.getComputedStyle(parent)['height']);
-						}
-					},0,child);
-				})();
+				// (function(){
+				// 	var cards = document.querySelectorAll('.child');
+				// 	var parent,height,child;
+				// 	var h = window.setTimeout(function(){
+				// 		for(var i = 0; i < cards.length; i++){
+				// 			child = cards[i];
+				// 			parent = child.parentNode;
+				// 			height = parseInt(window.getComputedStyle(parent)['height']) - 2*parseInt(window.getComputedStyle(child)['margin'])
+				// 			child.style.height = height + 'px';
+				// 			console.log(window.getComputedStyle(parent)['height']);
+				// 		}
+				// 	},0,child);
+				// })();
+				// window.onresize = function(){
+				// 		var cards = document.querySelectorAll('.child');
+				// 		var parent,height,child;
+				// 		for(var i = 0; i < cards.length; i++){
+				// 			child = cards[i];
+				// 			parent = child.parentNode;
+				// 			height = parseInt(window.getComputedStyle(parent)['height']) - 2*parseInt(window.getComputedStyle(child)['margin'])
+				// 			child.style.height = height + 'px';
+				// 			console.log(window.getComputedStyle(parent)['height']);
+				// 		}
+				// 	};
 			</script>
 		</body>
 		</html>
