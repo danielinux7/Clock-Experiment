@@ -21,7 +21,7 @@
 		top:0;
 		right:0;
 		width: 20px;
-    text-align: center;
+		text-align: center;
 	}
 	.default-item:hover{
 		background-color: #e2e2e2;
@@ -70,6 +70,8 @@
 	</div>
 	<script type="text/javascript">
 	(function(){
+
+// Bootstrap standard navigation widget.
 		var navContainer = document.querySelector('.standard-nav-container');
 		var navItems = navContainer.querySelectorAll('.standard-nav-item');
 		var defaultItem, navUl, activeItem; 
@@ -78,6 +80,7 @@
 		var init = function(options){
 			setupMobile();
 			setDefaultActive(options.defaultActiveItem);
+			setItemsListeners();
 		};
 
 		var setDefaultActive = function(defaultActiveItem){
@@ -92,9 +95,9 @@
 		};
 
 		var selectDefault = function(){
-				for (var i = navItems.length - 1; i >= 0; i--) {
-					navItems[i].classList.remove('inactive');
-				};
+			for (var i = navItems.length - 1; i >= 0; i--) {
+				navItems[i].classList.remove('inactive');
+			};
 		};
 
 		var resizeMobile = function(){
@@ -131,20 +134,30 @@
 			}
 			window.addEventListener('resize',resizeMobile);
 		};
-		for (var i = navItems.length - 1; i >= 0; i--) {
-			navItems[i].addEventListener('click', function(){
-				for (var i = navItems.length - 1; i >= 0; i--) {
-					this.classList.add('active');
-					this.classList.remove('inactive');
-					if (navItems[i] !== this) {
-						navItems[i].classList.remove('active');
-						navItems[i].classList.add('inactive');
+
+		var setItemsListeners = function(){
+			for (var i = navItems.length - 1; i >= 0; i--) {
+				navItems[i].addEventListener('click', function(){
+					for (var i = navItems.length - 1; i >= 0; i--) {
+						this.classList.add('active');
+						this.classList.remove('inactive');
+						if (navItems[i] !== this) {
+							navItems[i].classList.remove('active');
+							navItems[i].classList.add('inactive');
+						};
 					};
-				};
-			});
+				});
+			};
 		};
 
 		init(options);
+//////////////////////////////////////////////////////////////////////
+
+// Bootstrap progress navigation widget.
+//////////////////////////////////////////////////////////////////////
+
+// Bootstrap process navigation widget.
+//////////////////////////////////////////////////////////////////////
 	})();
 	</script>
 </body>
