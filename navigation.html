@@ -1,81 +1,118 @@
 <html>
 <head>
-  <style type="text/css">
-  .standard-nav-item{
-    border: 1px solid black;
-    color: blue;
-  }
-  .standard-nav-container{
-    border: 1px solid black;
-    width: 25%;
-  }
-  .standard-nav-container >  ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .inactive{
-    color: blue;
-  }
-  .active{
-    color:red;
-  }
-  .enabled{
+	<style type="text/css">
+	.standard-nav-item{
+		border: 1px solid black;
+		color: blue;
+	}
+	.standard-nav-container{
+		border: 1px solid black;
+		width: 25%;
+	}
+	.standard-nav-container >  ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.inactive{
+		color: blue;
+	}
+	.active{
+		color:red;
+	}
+	.enabled{
 
-  }
-  .disabled{
+	}
+	.disabled{
 
-  }
-  @media screen and (max-width: 639px){
-    .inactive{
-      display: none;
-    }
-    .active{
-      display: block;
-    }
-    .enabled{
+	}
+	@media screen and (max-width: 639px){
+		.inactive{
+			display: none;
+		}
+		.active{
+			display: block;
+		}
+		.enabled{
 
-    }
-    .disabled{
+		}
+		.disabled{
 
-    }
-    .standard-nav-container{
+		}
+		.standard-nav-container{
 
-    }
-  }
-  </style>
+		}
+	}
+	</style>
 </head>
 <body>
-  <div class="standard-nav-container">
-    <ul>
-      <li class="standard-nav-item">item 1</li>
-      <li class="standard-nav-item">item 2</li>
-      <li class="standard-nav-item">item 3</li>
-      <li class="standard-nav-item">item 4</li>
-      <li class="standard-nav-item">item 5</li>
-      <li class="standard-nav-item">item 6</li>
-    </ul>
-  </div>
-  <script type="text/javascript">
-  (function(){
-    var navContainer = document.querySelector('.standard-nav-container');
-    var navItems = document.querySelectorAll('.standard-nav-item');
-    for (var i = navItems.length - 1; i >= 0; i--) {
-      navItems[i].addEventListener('click', function(){
-        if (this.classList.contains('active') && window.innerWidth <= 639) {
-            console.log(window.innerWidth);
-        }
-        for (var i = navItems.length - 1; i >= 0; i--) {
-          this.classList.add('active');
-          this.classList.remove('inactive');
-          if (navItems[i] !== this) {
-            navItems[i].classList.remove('active');
-            navItems[i].classList.add('inactive');
-          };
-        };
-      });
-    };
-  })();
-  </script>
+	<div class="standard-nav-container">
+		<ul>
+			<li class="standard-nav-item">Item 1</li>
+			<li class="standard-nav-item">Item 2</li>
+			<li class="standard-nav-item">Item 3</li>
+			<li class="standard-nav-item">Item 4</li>
+			<li class="standard-nav-item">Item 5</li>
+			<li class="standard-nav-item">Item 6</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	(function(){
+		var navContainer = document.querySelector('.standard-nav-container');
+		var navItems = document.querySelectorAll('.standard-nav-item');
+		var defaultItem, navUl;
+		var init = function(){
+			setupMobile();
+			resizeMobile();
+		};
+		var resizeMobile = function(){
+			if (window.innerWidth <= 639) {
+				defaultItem  = document.querySelector('.default-item');
+				if (defaultItem == undefined || defaultItem == null) {
+					defaultItem = document.createElement('li');
+					defaultItem.innerHTML = "Select";
+					defaultItem.classList.add('standard-nav-item');
+					defaultItem.classList.add('default-item');
+					navUl = document.querySelector('ul').appendChild(defaultItem);
+				}
+			}
+			else if (window.innerWidth > 639) {
+				defaultItem  = document.querySelector('.default-item');
+				if (defaultItem != undefined && defaultItem != null) {
+					navUl = document.querySelector('ul').removeChild(defaultItem);
+				};
+			}
+		};
+		var setupMobile = function(){
+			if (window.innerWidth <= 639) {
+				defaultItem  = document.querySelector('.default-item');
+				if (defaultItem == undefined || defaultItem == null) {
+					defaultItem = document.createElement('li');
+					defaultItem.innerText = "Select";
+					defaultItem.classList.add('standard-nav-item');
+					defaultItem.classList.add('default-item');
+					navUl = document.querySelector('ul').appendChild(defaultItem);
+				}
+			}
+			window.addEventListener('resize',resizeMobile);
+		};
+		for (var i = navItems.length - 1; i >= 0; i--) {
+			navItems[i].addEventListener('click', function(){
+				if (this.classList.contains('active') && window.innerWidth <= 639) {
+					console.log(window.innerWidth);
+				}
+				for (var i = navItems.length - 1; i >= 0; i--) {
+					this.classList.add('active');
+					this.classList.remove('inactive');
+					if (navItems[i] !== this) {
+						navItems[i].classList.remove('active');
+						navItems[i].classList.add('inactive');
+					};
+				};
+			});
+		};
+		init();
+	})();
+	</script>
 </body>
 </html>
