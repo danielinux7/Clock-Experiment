@@ -1,7 +1,7 @@
 <html>
 <head>
 	<style type="text/css">
-	.standard-nav-item{
+	.standard-nav-item, .progress-nav-item, .progress-nav-sub-item{
 		border: 1px solid black;
 		color: blue;
 	}
@@ -11,10 +11,14 @@
 		border: 1px solid black;
 		width: 35%;
 	}
-	.standard-nav-container >  ul{
+	.standard-nav-container > ul, .progress-nav-container > ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
+	}
+	.progress-nav-container ul ul{
+		list-style: none;
+		margin: 2em;
 	}
 	.default-item{
 		position:absolute;
@@ -36,7 +40,7 @@
 
 	}
 	.disabled{
-
+		opacity: 0.5;
 	}
 	@media screen and (max-width: 639px){
 		.inactive{
@@ -44,12 +48,6 @@
 		}
 		.active{
 			display: block;
-		}
-		.enabled{
-
-		}
-		.disabled{
-
 		}
 		.standard-nav-container{
 			width: 70%;
@@ -68,6 +66,27 @@
 			<li class="standard-nav-item">Item 6</li>
 		</ul>
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+		<div class="progress-nav-container">
+		<ul>
+			<li class="progress-nav-item">Item 1</li>
+			<li class="progress-nav-item">Item 2</li>
+			<li class="progress-nav-item">Item 3
+				<ul>
+					<li class="progress-nav-sub-item"> Sub item 1</li>
+					<li class="progress-nav-sub-item"> Sub item 2</li>
+					<li class="progress-nav-sub-item"> Sub item 3</li>
+				</ul>
+			</li>
+			<li class="progress-nav-item">Item 4</li>
+			<li class="progress-nav-item">Item 5</li>
+			<li class="progress-nav-item">Item 6</li>
+		</ul>
+	</div>
+
 	<script type="text/javascript">
 	(function(){
 
@@ -154,6 +173,32 @@
 //////////////////////////////////////////////////////////////////////
 
 // Bootstrap progress navigation widget.
+		var progressNavContainer = document.querySelector('.progress-nav-container');
+		var progressNavItems = progressNavContainer.querySelectorAll('.progress-nav-item');
+		var currentStep = {itemIndex:0,subItemIndex:0};
+		var progressNavSubItems;
+
+		var initProgress = function(){
+			setProgressItemsListeners();
+		};
+
+		var setProgressItemsListeners = function(){
+			for (var i = progressNavItems.length - 1; i >= 0; i--) {
+				progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
+				if (currentStep.itemIndex < i) {
+					progressNavItems[i].classList.add('disabled');
+				}
+				progressNavItems[i].addEventListener('click',function(){
+
+				});
+			};
+		};
+
+		var setProgressSubItemsListeners = function(){
+
+		};
+
+		initProgress();
 //////////////////////////////////////////////////////////////////////
 
 // Bootstrap process navigation widget.
