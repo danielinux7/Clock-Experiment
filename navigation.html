@@ -6,13 +6,25 @@
 		color: blue;
 	}
 	.standard-nav-container{
+		display:inline-block;
+		position:relative;
 		border: 1px solid black;
-		width: 25%;
+		width: 35%;
 	}
 	.standard-nav-container >  ul{
 		list-style: none;
 		margin: 0;
 		padding: 0;
+	}
+	.default-item{
+		position:absolute;
+		top:0;
+		right:0;
+		width: 20px;
+    text-align: center;
+	}
+	.default-item:hover{
+		background-color: #e2e2e2;
 	}
 	.inactive{
 		color: blue;
@@ -40,7 +52,7 @@
 
 		}
 		.standard-nav-container{
-
+			width: 70%;
 		}
 	}
 	</style>
@@ -89,18 +101,18 @@
 			if (window.innerWidth <= 639) {
 				defaultItem  = navContainer.querySelector('.default-item');
 				if (defaultItem == undefined || defaultItem == null) {
-					defaultItem = document.createElement('li');
-					defaultItem.innerHTML = "Select";
+					defaultItem = document.createElement('div');
+					defaultItem.innerHTML = "\\/";
 					defaultItem.classList.add('standard-nav-item');
 					defaultItem.classList.add('default-item');
 					defaultItem.addEventListener('click',selectDefault);
-					navUl = navContainer.querySelector('ul').appendChild(defaultItem);
+					navContainer.appendChild(defaultItem);
 				}
 			}
 			else if (window.innerWidth > 639) {
 				defaultItem  = navContainer.querySelector('.default-item');
 				if (defaultItem != undefined && defaultItem != null) {
-					navUl = navContainer.querySelector('ul').removeChild(defaultItem);
+					navContainer.removeChild(defaultItem);
 				};
 			}
 		};
@@ -109,12 +121,12 @@
 			if (window.innerWidth <= 639) {
 				defaultItem  = navContainer.querySelector('.default-item');
 				if (defaultItem == undefined || defaultItem == null) {
-					defaultItem = document.createElement('li');
-					defaultItem.innerText = "Select";
+					defaultItem = document.createElement('div');
+					defaultItem.innerText = "\\/";
 					defaultItem.classList.add('standard-nav-item');
 					defaultItem.classList.add('default-item');
 					defaultItem.addEventListener('click',selectDefault);
-					navUl = navContainer.querySelector('ul').appendChild(defaultItem);
+					navContainer.appendChild(defaultItem);
 				}
 			}
 			window.addEventListener('resize',resizeMobile);
