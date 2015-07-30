@@ -59,48 +59,64 @@
 	<script type="text/javascript">
 	(function(){
 		var navContainer = document.querySelector('.standard-nav-container');
-		var navItems = document.querySelectorAll('.standard-nav-item');
-		var defaultItem, navUl;
+		var navItems = navContainer.querySelectorAll('.standard-nav-item');
+		var defaultItem, navUl, activeItem;
+
 		var init = function(){
 			setupMobile();
-			resizeMobile();
 		};
+
+		var selectDefault = function(){
+			navUl = navContainer.querySelector('ul');
+			activeItem = navUl.querySelector('.active');
+			if (activeItem == undefined || activeItem == null) {
+				for (var i = navItems.length - 1; i >= 0; i--) {
+					this.classList.add('active');
+					this.classList.remove('inactive');
+					if (navItems[i] !== this) {
+						navItems[i].classList.remove('active');
+						navItems[i].classList.add('inactive');
+					};
+				};
+			}
+		};
+
 		var resizeMobile = function(){
 			if (window.innerWidth <= 639) {
-				defaultItem  = document.querySelector('.default-item');
+				defaultItem  = navContainer.querySelector('.default-item');
 				if (defaultItem == undefined || defaultItem == null) {
 					defaultItem = document.createElement('li');
 					defaultItem.innerHTML = "Select";
 					defaultItem.classList.add('standard-nav-item');
 					defaultItem.classList.add('default-item');
-					navUl = document.querySelector('ul').appendChild(defaultItem);
+					defaultItem.addEventListener('click',selectDefault);
+					navUl = navContainer.querySelector('ul').appendChild(defaultItem);
 				}
 			}
 			else if (window.innerWidth > 639) {
-				defaultItem  = document.querySelector('.default-item');
+				defaultItem  = navContainer.querySelector('.default-item');
 				if (defaultItem != undefined && defaultItem != null) {
-					navUl = document.querySelector('ul').removeChild(defaultItem);
+					navUl = navContainer.querySelector('ul').removeChild(defaultItem);
 				};
 			}
 		};
+
 		var setupMobile = function(){
 			if (window.innerWidth <= 639) {
-				defaultItem  = document.querySelector('.default-item');
+				defaultItem  = navContainer.querySelector('.default-item');
 				if (defaultItem == undefined || defaultItem == null) {
 					defaultItem = document.createElement('li');
 					defaultItem.innerText = "Select";
 					defaultItem.classList.add('standard-nav-item');
 					defaultItem.classList.add('default-item');
-					navUl = document.querySelector('ul').appendChild(defaultItem);
+					defaultItem.addEventListener('click',selectDefault);
+					navUl = navContainer.querySelector('ul').appendChild(defaultItem);
 				}
 			}
 			window.addEventListener('resize',resizeMobile);
 		};
 		for (var i = navItems.length - 1; i >= 0; i--) {
 			navItems[i].addEventListener('click', function(){
-				if (this.classList.contains('active') && window.innerWidth <= 639) {
-					console.log(window.innerWidth);
-				}
 				for (var i = navItems.length - 1; i >= 0; i--) {
 					this.classList.add('active');
 					this.classList.remove('inactive');
@@ -111,6 +127,7 @@
 				};
 			});
 		};
+
 		init();
 	})();
 	</script>
