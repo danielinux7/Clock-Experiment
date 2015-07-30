@@ -62,6 +62,9 @@
     var navItems = document.querySelectorAll('.standard-nav-item');
     for (var i = navItems.length - 1; i >= 0; i--) {
       navItems[i].addEventListener('click', function(){
+        if (this.classList.contains('active') && window.innerWidth <= 639) {
+            console.log(window.innerWidth);
+        }
         for (var i = navItems.length - 1; i >= 0; i--) {
           this.classList.add('active');
           this.classList.remove('inactive');
