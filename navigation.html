@@ -70,7 +70,7 @@
 	<br>
 	<br>
 	<br>
-		<div class="progress-nav-container">
+	<div class="progress-nav-container">
 		<ul>
 			<li class="progress-nav-item">Item 1</li>
 			<li class="progress-nav-item">Item 2</li>
@@ -91,119 +91,138 @@
 	(function(){
 
 // Bootstrap standard navigation widget.
-		var navContainer = document.querySelector('.standard-nav-container');
-		var navItems = navContainer.querySelectorAll('.standard-nav-item');
-		var defaultItem, navUl, activeItem; 
-		var options = {defaultActiveItem : 0};
+var navContainer = document.querySelector('.standard-nav-container');
+var navItems = navContainer.querySelectorAll('.standard-nav-item');
+var defaultItem, navUl, activeItem; 
+var options = {defaultActiveItem : 0};
 
-		var init = function(options){
-			setupMobile();
-			setDefaultActive(options.defaultActiveItem);
-			setItemsListeners();
+var init = function(options){
+	setupMobile();
+	setDefaultActive(options.defaultActiveItem);
+	setItemsListeners();
+};
+
+var setDefaultActive = function(defaultActiveItem){
+	for (var i = navItems.length - 1; i >= 0; i--) {
+		if( i == defaultActiveItem){
+			navItems[i].classList.add('active');
+		}
+		else{
+			navItems[i].classList.add('inactive');
+		}
+	};
+};
+
+var selectDefault = function(){
+	for (var i = navItems.length - 1; i >= 0; i--) {
+		if (navItems[i].classList.contains('inactive')) {
+			navItems[i].classList.remove('inactive');
+		}
+		else{
+			navItems[i].classList.add('inactive');
+		}
+
+	};
+};
+
+var resizeMobile = function(){
+	if (window.innerWidth <= 639) {
+		defaultItem  = navContainer.querySelector('.default-item');
+		if (defaultItem == undefined || defaultItem == null) {
+			defaultItem = document.createElement('div');
+			defaultItem.innerHTML = "\\/";
+			defaultItem.classList.add('standard-nav-item');
+			defaultItem.classList.add('default-item');
+			defaultItem.addEventListener('click',selectDefault);
+			navContainer.appendChild(defaultItem);
+		}
+	}
+	else if (window.innerWidth > 639) {
+		defaultItem  = navContainer.querySelector('.default-item');
+		if (defaultItem != undefined && defaultItem != null) {
+			navContainer.removeChild(defaultItem);
 		};
+	}
+};
 
-		var setDefaultActive = function(defaultActiveItem){
+var setupMobile = function(){
+	if (window.innerWidth <= 639) {
+		defaultItem  = navContainer.querySelector('.default-item');
+		if (defaultItem == undefined || defaultItem == null) {
+			defaultItem = document.createElement('div');
+			defaultItem.innerText = "\\/";
+			defaultItem.classList.add('standard-nav-item');
+			defaultItem.classList.add('default-item');
+			defaultItem.addEventListener('click',selectDefault);
+			navContainer.appendChild(defaultItem);
+		}
+	}
+	window.addEventListener('resize',resizeMobile);
+};
+
+var setItemsListeners = function(){
+	for (var i = navItems.length - 1; i >= 0; i--) {
+		navItems[i].addEventListener('click', function(){
 			for (var i = navItems.length - 1; i >= 0; i--) {
-				if( i == defaultActiveItem){
-					navItems[i].classList.add('active');
-				}
-				else{
+				this.classList.add('active');
+				this.classList.remove('inactive');
+				if (navItems[i] !== this) {
+					navItems[i].classList.remove('active');
 					navItems[i].classList.add('inactive');
-				}
-			};
-		};
-
-		var selectDefault = function(){
-			for (var i = navItems.length - 1; i >= 0; i--) {
-				navItems[i].classList.remove('inactive');
-			};
-		};
-
-		var resizeMobile = function(){
-			if (window.innerWidth <= 639) {
-				defaultItem  = navContainer.querySelector('.default-item');
-				if (defaultItem == undefined || defaultItem == null) {
-					defaultItem = document.createElement('div');
-					defaultItem.innerHTML = "\\/";
-					defaultItem.classList.add('standard-nav-item');
-					defaultItem.classList.add('default-item');
-					defaultItem.addEventListener('click',selectDefault);
-					navContainer.appendChild(defaultItem);
-				}
-			}
-			else if (window.innerWidth > 639) {
-				defaultItem  = navContainer.querySelector('.default-item');
-				if (defaultItem != undefined && defaultItem != null) {
-					navContainer.removeChild(defaultItem);
 				};
-			}
-		};
-
-		var setupMobile = function(){
-			if (window.innerWidth <= 639) {
-				defaultItem  = navContainer.querySelector('.default-item');
-				if (defaultItem == undefined || defaultItem == null) {
-					defaultItem = document.createElement('div');
-					defaultItem.innerText = "\\/";
-					defaultItem.classList.add('standard-nav-item');
-					defaultItem.classList.add('default-item');
-					defaultItem.addEventListener('click',selectDefault);
-					navContainer.appendChild(defaultItem);
-				}
-			}
-			window.addEventListener('resize',resizeMobile);
-		};
-
-		var setItemsListeners = function(){
-			for (var i = navItems.length - 1; i >= 0; i--) {
-				navItems[i].addEventListener('click', function(){
-					for (var i = navItems.length - 1; i >= 0; i--) {
-						this.classList.add('active');
-						this.classList.remove('inactive');
-						if (navItems[i] !== this) {
-							navItems[i].classList.remove('active');
-							navItems[i].classList.add('inactive');
-						};
-					};
-				});
 			};
-		};
+		});
+	};
+};
 
-		init(options);
+init(options);
 //////////////////////////////////////////////////////////////////////
 
 // Bootstrap progress navigation widget.
-		var progressNavContainer = document.querySelector('.progress-nav-container');
-		var progressNavItems = progressNavContainer.querySelectorAll('.progress-nav-item');
-		var currentStep = {itemIndex:0,subItemIndex:0};
-		var progressNavSubItems;
+var progressNavContainer = document.querySelector('.progress-nav-container');
+var progressNavItems = progressNavContainer.querySelectorAll('.progress-nav-item');
+var currentStep = {itemIndex:2,subItemIndex:1};
+var progressNavSubItems;
 
-		var initProgress = function(){
-			setProgressItemsListeners();
-		};
+var initProgress = function(){
+	setProgressItemsListeners();
+};
 
-		var setProgressItemsListeners = function(){
-			for (var i = progressNavItems.length - 1; i >= 0; i--) {
-				progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
-				if (currentStep.itemIndex < i) {
-					progressNavItems[i].classList.add('disabled');
+var setProgressItemsListeners = function(){
+	for (var i = 0; i < progressNavItems.length; i++) {
+		progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
+		if (i > currentStep.itemIndex) {
+			progressNavItems[i].classList.add('disabled');
+		}
+		else if (i == currentStep.itemIndex) {
+			if (progressNavSubItems != undefined && progressNavSubItems != null) {
+				if (currentStep.subItemIndex < progressNavSubItems.length-1) {
+					for(var j = currentStep.subItemIndex+1; j < progressNavSubItems.length; j++){
+						progressNavSubItems[j].classList.add('disabled');
+					}
 				}
-				progressNavItems[i].addEventListener('click',function(){
+			}
+			else{
+				progressNavItems[i].classList.add('disabled');
+			}
+		}
+	progressNavItems[i].addEventListener('click',function(){
 
-				});
-			};
-		};
+	});
+}
+};
 
-		var setProgressSubItemsListeners = function(){
 
-		};
+var setProgressSubItemsListeners = function(){
 
-		initProgress();
+};
+
+initProgress();
 //////////////////////////////////////////////////////////////////////
 
 // Bootstrap process navigation widget.
 //////////////////////////////////////////////////////////////////////
-	})();
-	</script>
+})();
+</script>
 </body>
 </html>
