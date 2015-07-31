@@ -1,7 +1,7 @@
 <html>
 <head>
 	<style type="text/css">
-	.standard-nav-item, .progress-nav-item, .progress-nav-sub-item{
+	.standard-nav-item, .progress-nav-item, .progress-nav-sub-item, .process-nav-item, .process-nav-sub-item{
 		border: 1px solid black;
 		color: blue;
 	}
@@ -11,12 +11,15 @@
 		border: 1px solid black;
 		width: 35%;
 	}
-	.standard-nav-container > ul, .progress-nav-container > ul {
+	.standard-nav-container > ul, .progress-nav-container > ul, .process-nav-container > ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 	.progress-nav-container ul ul{
+		list-style: none;
+	}
+	.process-nav-container ul ul{
 		list-style: none;
 	}
 	.default-item{
@@ -85,7 +88,26 @@
 			<li class="progress-nav-item">Item 6</li>
 		</ul>
 	</div>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="process-nav-container">
+		<ul>
+			<li class="process-nav-item">Item 1</li>
+			<li class="process-nav-item">Item 2</li>
+			<li class="process-nav-item">Item 3
+				<ul>
+					<li class="process-nav-sub-item"> Sub item 1</li>
+					<li class="process-nav-sub-item"> Sub item 2</li>
+					<li class="process-nav-sub-item"> Sub item 3</li>
+				</ul>
+			</li>
+			<li class="process-nav-item">Item 4</li>
+			<li class="process-nav-item">Item 5</li>
+			<li class="process-nav-item">Item 6</li>
+		</ul>
+	</div>
 	<script type="text/javascript">
 	(function(){
 
@@ -180,24 +202,35 @@ init(options);
 // Bootstrap progress navigation widget.
 var progressNavContainer = document.querySelector('.progress-nav-container');
 var progressNavItems = progressNavContainer.querySelectorAll('.progress-nav-item');
-var currentStep = {itemIndex:2,subItemIndex:1};
+var currentProgressStep = {itemIndex:2,subItemIndex:2};
 var progressNavSubItems;
 
 var initProgress = function(){
 	setProgressItems();
+	setProgressActiveItem();
 	setProgressListener();
+};
+
+var setProgressActiveItem = function(){
+	progressNavSubItems = progressNavItems[currentProgressStep.itemIndex].querySelectorAll('.progress-nav-sub-item');
+	if (progressNavSubItems != undefined && progressNavSubItems != null && progressNavSubItems.length != 0) {
+		progressNavSubItems[currentProgressStep.subItemIndex].classList.add('active');
+	}
+	else{
+		progressNavItems[currentProgressStep.itemIndex].classList.add('active');	
+	}
 };
 
 var setProgressItems = function(){
 	for (var i = 0; i < progressNavItems.length; i++) {
 		progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
-		if (i > currentStep.itemIndex) {
+		if (i > currentProgressStep.itemIndex) {
 			progressNavItems[i].classList.add('disabled');
 		}
-		else if (i == currentStep.itemIndex) {
+		else if (i == currentProgressStep.itemIndex) {
 			if (progressNavSubItems != undefined && progressNavSubItems != null) {
-				if (currentStep.subItemIndex < progressNavSubItems.length-1) {
-					for(var j = currentStep.subItemIndex+1; j < progressNavSubItems.length; j++){
+				if (currentProgressStep.subItemIndex < progressNavSubItems.length-1) {
+					for(var j = currentProgressStep.subItemIndex+1; j < progressNavSubItems.length; j++){
 						progressNavSubItems[j].classList.add('disabled');
 					}
 				}
@@ -227,6 +260,36 @@ initProgress();
 //////////////////////////////////////////////////////////////////////
 
 // Bootstrap process navigation widget.
+var processNavContainer = document.querySelector('.process-nav-container');
+var processNavItems = processNavContainer.querySelectorAll('.process-nav-item');
+var currentProcessStep = {itemIndex:2,subItemIndex:1};
+var processNavSubItems;
+
+var initProcess = function(){
+	setProcessActiveItem();
+	setProcessListener();
+};
+
+var setProcessActiveItem = function(){
+	processNavSubItems = processNavItems[currentProcessStep.itemIndex].querySelectorAll('.process-nav-sub-item');
+	if (processNavSubItems != undefined && processNavSubItems != null && processNavSubItems.length != 0) {
+		processNavSubItems[currentProcessStep.subItemIndex].classList.add('active');
+	}
+	else{
+		processNavItems[currentProcessStep.itemIndex].classList.add('active');	
+	}
+};
+
+
+var setProcessListener = function(){
+	processNavContainer.addEventListener('click',function(e){
+		if(e.target != undefined && e.target != null){
+				console.log(e.target);
+		}
+	});
+};
+
+initProcess();
 //////////////////////////////////////////////////////////////////////
 })();
 </script>
