@@ -18,7 +18,6 @@
 	}
 	.progress-nav-container ul ul{
 		list-style: none;
-		margin: 2em;
 	}
 	.default-item{
 		position:absolute;
@@ -185,10 +184,11 @@ var currentStep = {itemIndex:2,subItemIndex:1};
 var progressNavSubItems;
 
 var initProgress = function(){
-	setProgressItemsListeners();
+	setProgressItems();
+	setProgressListener();
 };
 
-var setProgressItemsListeners = function(){
+var setProgressItems = function(){
 	for (var i = 0; i < progressNavItems.length; i++) {
 		progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
 		if (i > currentStep.itemIndex) {
@@ -206,15 +206,21 @@ var setProgressItemsListeners = function(){
 				progressNavItems[i].classList.add('disabled');
 			}
 		}
-	progressNavItems[i].addEventListener('click',function(){
-
-	});
 }
 };
 
 
-var setProgressSubItemsListeners = function(){
-
+var setProgressListener = function(){
+	progressNavContainer.addEventListener('click',function(e){
+		if(e.target != undefined && e.target != null){
+			if(e.target.classList.contains('disabled')){
+				e.preventDefault();
+			}
+			else{
+				console.log(e.target);
+			}
+		}
+	});
 };
 
 initProgress();
