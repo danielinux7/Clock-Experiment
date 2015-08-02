@@ -1,201 +1,237 @@
 <html>
 <head>
-	<style type="text/css">
-	.standard-nav-item, .progress-nav-item, .progress-nav-sub-item, .process-nav-item, .process-nav-sub-item{
-		border: 1px solid black;
-		color: blue;
-	}
-	.standard-nav-container{
-		display:inline-block;
-		position:relative;
-		border: 1px solid black;
-		width: 35%;
-	}
-	.standard-nav-container > ul, .progress-nav-container > ul, .process-nav-container > ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	.progress-nav-container ul ul{
-		list-style: none;
-	}
-	.process-nav-container ul ul{
-		list-style: none;
-	}
-	.default-item{
-		position:absolute;
-		top:0;
-		right:0;
-		width: 20px;
-		text-align: center;
-	}
-	.default-item:hover{
-		background-color: #e2e2e2;
-	}
-	.inactive{
-		color: blue;
-	}
-	.active{
-		color:red;
-	}
-	.enabled{
-
-	}
-	.disabled{
-		opacity: 0.5;
-	}
-	@media screen and (max-width: 639px){
-		.inactive{
-			display: none;
-		}
-		.active{
-			display: block;
-		}
-		.standard-nav-container{
-			width: 70%;
-		}
-	}
-	</style>
+  <style type="text/css">
+    .standard-nav-item, .progress-nav-item, .progress-nav-sub-item, .process-nav-item, .process-nav-sub-item{
+      border: 1px solid black;
+      color: blue;
+    }
+    .standard-nav-container{
+      display:inline-block;
+      position:relative;
+      border: 1px solid black;
+      width: 35%;
+    }
+    .standard-nav-container > ul, .progress-nav-container > ul, .process-nav-container > ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .progress-nav-container ul ul{
+      list-style: none;
+    }
+    .process-nav-container ul ul{
+      list-style: none;
+    }
+    .default-item{
+      position:absolute;
+      top:0;
+      right:0;
+      width: 20px;
+      text-align: center;
+    }
+    .default-item:hover{
+      background-color: #e2e2e2;
+    }
+    .inactive{
+      color: blue;
+    }
+    .active{
+      color:red;
+    }
+    .standard-nav-container > .hide{
+      display: none;
+    }
+    .disabled{
+      opacity: 0.5;
+    }
+    @media screen and (max-width: 639px){
+      .inactive{
+        display: none;
+      }
+      .active{
+        display: block;
+      }
+      .standard-nav-container{
+        width: 70%;
+      }
+      .tray{
+        position:relative;
+        width:100%;
+        height:100%;
+        z-index: 13;
+      }
+      .tray-link{
+        color: blue;
+      }
+    }
+  </style>
 </head>
 <body>
-	<div class="standard-nav-container">
-		<ul>
-			<li class="standard-nav-item">Item 1</li>
-			<li class="standard-nav-item">Item 2</li>
-			<li class="standard-nav-item">Item 3</li>
-			<li class="standard-nav-item">Item 4</li>
-			<li class="standard-nav-item">Item 5</li>
-			<li class="standard-nav-item">Item 6</li>
-		</ul>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="progress-nav-container">
-		<ul>
-			<li class="progress-nav-item">Item 1</li>
-			<li class="progress-nav-item">Item 2</li>
-			<li class="progress-nav-item">Item 3
-				<ul>
-					<li class="progress-nav-sub-item"> Sub item 1</li>
-					<li class="progress-nav-sub-item"> Sub item 2</li>
-					<li class="progress-nav-sub-item"> Sub item 3</li>
-				</ul>
-			</li>
-			<li class="progress-nav-item">Item 4</li>
-			<li class="progress-nav-item">Item 5</li>
-			<li class="progress-nav-item">Item 6</li>
-		</ul>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="process-nav-container">
-		<ul>
-			<li class="process-nav-item">Item 1</li>
-			<li class="process-nav-item">Item 2</li>
-			<li class="process-nav-item">Item 3
-				<ul>
-					<li class="process-nav-sub-item"> Sub item 1</li>
-					<li class="process-nav-sub-item"> Sub item 2</li>
-					<li class="process-nav-sub-item"> Sub item 3</li>
-				</ul>
-			</li>
-			<li class="process-nav-item">Item 4</li>
-			<li class="process-nav-item">Item 5</li>
-			<li class="process-nav-item">Item 6</li>
-		</ul>
-	</div>
-	<script type="text/javascript">
-	(function(){
+  <div class="standard-nav-container">
+    <ul>
+      <li class="standard-nav-item" data-tray-id="a1">Item 1</li>
+      <li class="standard-nav-item" data-tray-id="a2">Item 2</li>
+      <li class="standard-nav-item" data-tray-id="a3">Item 3</li>
+      <li class="standard-nav-item" data-tray-id="a4">Item 4</li>
+      <li class="standard-nav-item" data-tray-id="a5">Item 5</li>
+      <li class="standard-nav-item" data-tray-id="a6">Item 6</li>
+    </ul>
+    <div id="a1">1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora fugit, quo. Vero voluptas inventore corrupti dicta iure aperiam et magni nemo a commodi! Distinctio cum neque esse sit harum, consequatur.</div>
+    <div id="a2"> 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora fugit, quo. Vero voluptas inventore corrupti dicta iure aperiam et magni nemo a commodi! Distinctio cum neque esse sit harum, consequatur.</div>
+    <div id="a3">3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora fugit, quo. Vero voluptas inventore corrupti dicta iure aperiam et magni nemo a commodi! Distinctio cum neque esse sit harum, consequatur.</div>
+    <div id="a4">4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora fugit, quo. Vero voluptas inventore corrupti dicta iure aperiam et magni nemo a commodi! Distinctio cum neque esse sit harum, consequatur.</div>
+    <div id="a5">5 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora fugit, quo. Vero voluptas inventore corrupti dicta iure aperiam et magni nemo a commodi! Distinctio cum neque esse sit harum, consequatur.</div>
+    <div id="a6">6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora fugit, quo. Vero voluptas inventore corrupti dicta iure aperiam et magni nemo a commodi! Distinctio cum neque esse sit harum, consequatur.</div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="progress-nav-container">
+    <ul>
+      <li class="progress-nav-item">Item 1</li>
+      <li class="progress-nav-item">Item 2</li>
+      <li class="progress-nav-item">Item 3
+        <ul>
+          <li class="progress-nav-sub-item"> Sub item 1</li>
+          <li class="progress-nav-sub-item"> Sub item 2</li>
+          <li class="progress-nav-sub-item"> Sub item 3</li>
+        </ul>
+      </li>
+      <li class="progress-nav-item">Item 4</li>
+      <li class="progress-nav-item">Item 5</li>
+      <li class="progress-nav-item">Item 6</li>
+    </ul>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="process-nav-container">
+    <ul>
+      <li class="process-nav-item">Item 1</li>
+      <li class="process-nav-item">Item 2</li>
+      <li class="process-nav-item">Item 3
+        <ul>
+          <li class="process-nav-sub-item"> Sub item 1</li>
+          <li class="process-nav-sub-item"> Sub item 2</li>
+          <li class="process-nav-sub-item"> Sub item 3</li>
+        </ul>
+      </li>
+      <li class="process-nav-item">Item 4</li>
+      <li class="process-nav-item">Item 5</li>
+      <li class="process-nav-item">Item 6</li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    (function(){
 
 // Bootstrap standard navigation widget.
 var navContainer = document.querySelector('.standard-nav-container');
 var navItems = navContainer.querySelectorAll('.standard-nav-item');
-var defaultItem, navUl, activeItem; 
+var defaultItem, navUl, activeItem, tray, trayLink;
 var options = {defaultActiveItem : 0};
 
 var init = function(options){
-	setupMobile();
-	setDefaultActive(options.defaultActiveItem);
-	setItemsListeners();
+  setupMobile();
+  setDefaultActive(options.defaultActiveItem);
+  setItemsListeners();
+  setTrays();
 };
 
 var setDefaultActive = function(defaultActiveItem){
-	for (var i = navItems.length - 1; i >= 0; i--) {
-		if( i == defaultActiveItem){
-			navItems[i].classList.add('active');
-		}
-		else{
-			navItems[i].classList.add('inactive');
-		}
-	};
+  for (var i = navItems.length - 1; i >= 0; i--) {
+    if( i == defaultActiveItem){
+      navItems[i].classList.add('active');
+    }
+    else{
+      navItems[i].classList.add('inactive');
+    }
+  };
 };
 
 var selectDefault = function(){
-	for (var i = navItems.length - 1; i >= 0; i--) {
-		if (navItems[i].classList.contains('inactive')) {
-			navItems[i].classList.remove('inactive');
-		}
-		else{
-			navItems[i].classList.add('inactive');
-		}
+  for (var i = navItems.length - 1; i >= 0; i--) {
+    if (navItems[i].classList.contains('inactive')) {
+      navItems[i].classList.remove('inactive');
+    }
+    else{
+      navItems[i].classList.add('inactive');
+    }
 
-	};
+  };
 };
 
 var resizeMobile = function(){
-	if (window.innerWidth <= 639) {
-		defaultItem  = navContainer.querySelector('.default-item');
-		if (defaultItem == undefined || defaultItem == null) {
-			defaultItem = document.createElement('div');
-			defaultItem.innerHTML = "\\/";
-			defaultItem.classList.add('standard-nav-item');
-			defaultItem.classList.add('default-item');
-			defaultItem.addEventListener('click',selectDefault);
-			navContainer.appendChild(defaultItem);
-		}
-	}
-	else if (window.innerWidth > 639) {
-		defaultItem  = navContainer.querySelector('.default-item');
-		if (defaultItem != undefined && defaultItem != null) {
-			navContainer.removeChild(defaultItem);
-		};
-	}
+  if (window.innerWidth <= 639) {
+    defaultItem  = navContainer.querySelector('.default-item');
+    if (defaultItem == undefined || defaultItem == null) {
+      defaultItem = document.createElement('div');
+      defaultItem.innerHTML = "\\/";
+      defaultItem.classList.add('standard-nav-item');
+      defaultItem.classList.add('default-item');
+      defaultItem.addEventListener('click',selectDefault);
+      navContainer.appendChild(defaultItem);
+    }
+  }
+  else if (window.innerWidth > 639) {
+    defaultItem  = navContainer.querySelector('.default-item');
+    if (defaultItem != undefined && defaultItem != null) {
+      navContainer.removeChild(defaultItem);
+    };
+  }
 };
 
 var setupMobile = function(){
-	if (window.innerWidth <= 639) {
-		defaultItem  = navContainer.querySelector('.default-item');
-		if (defaultItem == undefined || defaultItem == null) {
-			defaultItem = document.createElement('div');
-			defaultItem.innerText = "\\/";
-			defaultItem.classList.add('standard-nav-item');
-			defaultItem.classList.add('default-item');
-			defaultItem.addEventListener('click',selectDefault);
-			navContainer.appendChild(defaultItem);
-		}
-	}
-	window.addEventListener('resize',resizeMobile);
+  if (window.innerWidth <= 639) {
+    defaultItem  = navContainer.querySelector('.default-item');
+    if (defaultItem == undefined || defaultItem == null) {
+      defaultItem = document.createElement('div');
+      defaultItem.innerText = "\\/";
+      defaultItem.classList.add('standard-nav-item');
+      defaultItem.classList.add('default-item');
+      defaultItem.addEventListener('click',selectDefault);
+      navContainer.appendChild(defaultItem);
+    }
+  }
+  window.addEventListener('resize',resizeMobile);
 };
 
 var setItemsListeners = function(){
-	for (var i = navItems.length - 1; i >= 0; i--) {
-		navItems[i].addEventListener('click', function(){
-			for (var i = navItems.length - 1; i >= 0; i--) {
-				this.classList.add('active');
-				this.classList.remove('inactive');
-				if (navItems[i] !== this) {
-					navItems[i].classList.remove('active');
-					navItems[i].classList.add('inactive');
-				};
-			};
-		});
-	};
+  for (var i = navItems.length - 1; i >= 0; i--) {
+    navItems[i].addEventListener('click', function(){
+      for (var i = navItems.length - 1; i >= 0; i--) {
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        tray = navContainer.querySelector('#'+ this.getAttribute('data-tray-id'));
+        tray.classList.remove('hide');
+        tray.setAttribute('class','tray');
+        if (navItems[i] !== this) {
+          navItems[i].classList.remove('active');
+          navItems[i].classList.add('inactive');
+          tray = navContainer.querySelector('#'+ navItems[i].getAttribute('data-tray-id'));
+          tray.classList.add('hide');
+        };
+      };
+    });
+  };
 };
 
+var setTrays = function(){
+  for (var i = navItems.length - 1; i >= 0; i--) {
+    tray = navContainer.querySelector('#'+ navItems[i].getAttribute('data-tray-id'));
+    tray.setAttribute('class','hide');
+    trayLink = document.createElement('span');
+    trayLink.classList.add('tray-link');
+    trayLink.innerText = "Hide Details";
+    tray.appendChild(trayLink);
+    (function(tray){
+      trayLink.addEventListener('click',function(){
+        tray.setAttribute('class','hide');
+      });
+    })(tray);
+  };
+};
 init(options);
 //////////////////////////////////////////////////////////////////////
 
@@ -206,54 +242,54 @@ var currentProgressStep = {itemIndex:2,subItemIndex:2};
 var progressNavSubItems;
 
 var initProgress = function(){
-	setProgressItems();
-	setProgressActiveItem();
-	setProgressListener();
+  setProgressItems();
+  setProgressActiveItem();
+  setProgressListener();
 };
 
 var setProgressActiveItem = function(){
-	progressNavSubItems = progressNavItems[currentProgressStep.itemIndex].querySelectorAll('.progress-nav-sub-item');
-	if (progressNavSubItems != undefined && progressNavSubItems != null && progressNavSubItems.length != 0) {
-		progressNavSubItems[currentProgressStep.subItemIndex].classList.add('active');
-	}
-	else{
-		progressNavItems[currentProgressStep.itemIndex].classList.add('active');	
-	}
+  progressNavSubItems = progressNavItems[currentProgressStep.itemIndex].querySelectorAll('.progress-nav-sub-item');
+  if (progressNavSubItems != undefined && progressNavSubItems != null && progressNavSubItems.length != 0) {
+    progressNavSubItems[currentProgressStep.subItemIndex].classList.add('active');
+  }
+  else{
+    progressNavItems[currentProgressStep.itemIndex].classList.add('active');
+  }
 };
 
 var setProgressItems = function(){
-	for (var i = 0; i < progressNavItems.length; i++) {
-		progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
-		if (i > currentProgressStep.itemIndex) {
-			progressNavItems[i].classList.add('disabled');
-		}
-		else if (i == currentProgressStep.itemIndex) {
-			if (progressNavSubItems != undefined && progressNavSubItems != null) {
-				if (currentProgressStep.subItemIndex < progressNavSubItems.length-1) {
-					for(var j = currentProgressStep.subItemIndex+1; j < progressNavSubItems.length; j++){
-						progressNavSubItems[j].classList.add('disabled');
-					}
-				}
-			}
-			else{
-				progressNavItems[i].classList.add('disabled');
-			}
-		}
-}
+  for (var i = 0; i < progressNavItems.length; i++) {
+    progressNavSubItems = progressNavItems[i].querySelectorAll('.progress-nav-sub-item');
+    if (i > currentProgressStep.itemIndex) {
+      progressNavItems[i].classList.add('disabled');
+    }
+    else if (i == currentProgressStep.itemIndex) {
+      if (progressNavSubItems != undefined && progressNavSubItems != null) {
+        if (currentProgressStep.subItemIndex < progressNavSubItems.length-1) {
+          for(var j = currentProgressStep.subItemIndex+1; j < progressNavSubItems.length; j++){
+            progressNavSubItems[j].classList.add('disabled');
+          }
+        }
+      }
+      else{
+        progressNavItems[i].classList.add('disabled');
+      }
+    }
+  }
 };
 
 
 var setProgressListener = function(){
-	progressNavContainer.addEventListener('click',function(e){
-		if(e.target != undefined && e.target != null){
-			if(e.target.classList.contains('disabled')){
-				e.preventDefault();
-			}
-			else{
-				console.log(e.target);
-			}
-		}
-	});
+  progressNavContainer.addEventListener('click',function(e){
+    if(e.target != undefined && e.target != null){
+      if(e.target.classList.contains('disabled')){
+        e.preventDefault();
+      }
+      else{
+        console.log(e.target);
+      }
+    }
+  });
 };
 
 initProgress();
@@ -266,27 +302,27 @@ var currentProcessStep = {itemIndex:2,subItemIndex:1};
 var processNavSubItems;
 
 var initProcess = function(){
-	setProcessActiveItem();
-	setProcessListener();
+  setProcessActiveItem();
+  setProcessListener();
 };
 
 var setProcessActiveItem = function(){
-	processNavSubItems = processNavItems[currentProcessStep.itemIndex].querySelectorAll('.process-nav-sub-item');
-	if (processNavSubItems != undefined && processNavSubItems != null && processNavSubItems.length != 0) {
-		processNavSubItems[currentProcessStep.subItemIndex].classList.add('active');
-	}
-	else{
-		processNavItems[currentProcessStep.itemIndex].classList.add('active');	
-	}
+  processNavSubItems = processNavItems[currentProcessStep.itemIndex].querySelectorAll('.process-nav-sub-item');
+  if (processNavSubItems != undefined && processNavSubItems != null && processNavSubItems.length != 0) {
+    processNavSubItems[currentProcessStep.subItemIndex].classList.add('active');
+  }
+  else{
+    processNavItems[currentProcessStep.itemIndex].classList.add('active');
+  }
 };
 
 
 var setProcessListener = function(){
-	processNavContainer.addEventListener('click',function(e){
-		if(e.target != undefined && e.target != null){
-				console.log(e.target);
-		}
-	});
+  processNavContainer.addEventListener('click',function(e){
+    if(e.target != undefined && e.target != null){
+      console.log(e.target);
+    }
+  });
 };
 
 initProcess();
