@@ -43,6 +43,9 @@
     .disabled{
       opacity: 0.5;
     }
+    .tray-link{
+      color: blue;
+    }
     @media screen and (max-width: 639px){
       .inactive{
         display: none;
@@ -51,14 +54,11 @@
         display: block;
       }
       .standard-nav-container{
-        min-width: 60%;
+        width: 60%;
       }
       .tray{
         width:100%;
         height:100%;
-      }
-      .tray-link{
-        color: blue;
       }
     }
   </style>
@@ -170,14 +170,14 @@ var resizeMobile = function(){
       defaultItem.addEventListener('click',selectDefault);
       navContainer.appendChild(defaultItem);
       if (navContainer.querySelector('.tray')) {
-      // navContainer.style.width = '100%';
+      navContainer.style.width = 'auto';
       navUl = navContainer.querySelector('ul');
       navUl.style.display = "none";
       defaultItem  = navContainer.querySelector('.default-item');
       defaultItem.style.display = "none";
     }
     else{
-      // navContainer.style.width = 'auto';
+      navContainer.style.width = '';
       navUl = navContainer.querySelector('ul');
       navUl.style.display = "block";
       defaultItem  = navContainer.querySelector('.default-item');
@@ -190,6 +190,7 @@ var resizeMobile = function(){
     if (defaultItem != undefined && defaultItem != null) {
       navContainer.removeChild(defaultItem);
       if (navContainer.querySelector('.tray')) {
+      navContainer.style.width = '';
       navUl = navContainer.querySelector('ul');
       navUl.style.display = "block";
     }
@@ -224,7 +225,7 @@ var setItemsListeners = function(){
         this.classList.remove('inactive');
         tray = navContainer.querySelector('#'+ this.getAttribute('data-tray-id'));
         if(window.innerWidth <= 639){
-          // navContainer.style.width = '100%';
+          navContainer.style.width = 'auto';
           navUl = navContainer.querySelector('ul');
           navUl.style.display = "none";
           defaultItem  = navContainer.querySelector('.default-item');
@@ -236,7 +237,7 @@ var setItemsListeners = function(){
           navItems[i].classList.remove('active');
           navItems[i].classList.add('inactive');
           tray = navContainer.querySelector('#'+ navItems[i].getAttribute('data-tray-id'));
-          tray.classList.add('hide');
+          tray.setAttribute('class','hide');
         };
       };
     });
@@ -255,7 +256,7 @@ var setTrays = function(){
       trayLink.addEventListener('click',function(){
         tray.setAttribute('class','hide');
         if(window.innerWidth <= 639){
-          // navContainer.style.width = '0';
+          navContainer.style.width = '';
           navUl = navContainer.querySelector('ul');
           navUl.style.display = "block";
           defaultItem  = navContainer.querySelector('.default-item');
